@@ -5,13 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import EmpMain from './components/empMain';
+import MainProd from './components/mainProd';
 import {BrowserRouter} from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <BrowserRouter>
-  <EmpMain/>
+  <MainProd/>
   </BrowserRouter>
    
   //document.getElementById('root')

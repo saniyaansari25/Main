@@ -148,7 +148,7 @@ app.get("/shops",function(req,res){
 })
 app.post("/shops",function(req,res){
     var values=Object.values(req.body);
-    
+    console.log(values)
     let query="INSERT INTO shop (name,rent)VALUES ($1,$2)";
     client.query(query,values,function(err,result){
         if(err)res.status(404).send(err)
@@ -205,13 +205,102 @@ app.put("/products/:id",function(req,res){
     })
 })
 app.get("/purchases",function(req,res){
-    let productid=req.query.productid
+    let productname=req.query.productname
+    let shopname=req.query.shopname
     let sort=req.query.sort
-    if(productid)
+    
+
+    if(productname){
+        let p=productname.split(',')
+        console.log(p)
+        console.log(p.length)
+        if(p.length==1)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==2)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==3)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==4)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==5)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==6)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==7)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==8)
+        {
+            let values=[productname.split(',')]
+            console.log(values)
+            let query="SELECT * FROM purchase where productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8))";
+            client.query(query,productname.split(','),function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+    }
+    else if(shopname)
     {
-        let arr=productid.split(",")
-        let values=[productid]
-        let query="SELECT * FROM purchase where productid=$1";
+        
+        let values=[shopname]
+        
+        let query="SELECT * FROM purchase where shopId=(SELECT id FROM shop where name=$1)";
         client.query(query,values,function(err,result){
             if(err)res.status(404).send(err)
             else res.send(result.rows)
@@ -260,6 +349,7 @@ app.get("/purchases",function(req,res){
         
         let query="SELECT * FROM purchase";
         client.query(query,function(err,result){
+            
             if(err)console.log(err)
             else res.send(result.rows)
         })
@@ -290,9 +380,9 @@ app.get("/totalPurchase/shop/:id",function(req,res){
     let id=+req.params.id
     let value=[id]
     
-    let query="SELECT SUM(quantity) as totalpurchase FROM purchase GROUP BY shopid=$1";
+    let query="SELECT productid,SUM(quantity) as totalpurchase FROM purchase GROUP BY shopId=$1,productid;";
     client.query(query,value,function(err,result){
-        if(err)res.status(404).send(err)
+        if(err)console.log(err)
         else res.send(result.rows)
     })
 })
@@ -300,7 +390,7 @@ app.get("/totalPurchase/product/:id",function(req,res){
     let id=+req.params.id
     let value=[id]
     
-    let sql="SELECT SUM(quantity) as totalpurchase FROM purchase GROUP BY productid=$1";
+    let sql="SELECT shopId,SUM(quantity) as totalpurchase FROM purchase GROUP BY productid=$1,shopId";
     client.query(sql,value,function(err,result){
         if(err)res.status(404).send(err)
         else res.send(result.rows)

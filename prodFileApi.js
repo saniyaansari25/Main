@@ -128,18 +128,141 @@ app.put("/products/:id",function(req,res){
     })
 })
 app.get("/purchases",function(req,res){
-    let productid=req.query.productid
+    let productname=req.query.productname
     let sort=req.query.sort
-    if(productid)
+    let shopname=req.query.shopname
+    
+    if(productname)
     {
-        fs.readFile(fname3,"utf8",function(err,data){
+        let p=productname.split(',')
+        console.log(p)
+        console.log(p.length)
+        if(p.length==1)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.find(n=>n.productName==productname)
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product.productId)
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+        if(p.length==2)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.filter(n=>n.productName==p[0] || n.productName==p[1])
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product[0].productId || n.productid==product[1].productId) 
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+        if(p.length==3)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.filter(n=>n.productName==p[0] || n.productName==p[1] || n.productName==p[2])
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product[0].productId || n.productid==product[1].productId || n.productid==product[2].productId) 
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+        if(p.length==4)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.filter(n=>n.productName==p[0] || n.productName==p[1] || n.productName==p[2]|| n.productName==p[3])
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product[0].productId || n.productid==product[1].productId || n.productid==product[2].productId || n.productid==product[3].productId) 
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+        if(p.length==5)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.filter(n=>n.productName==p[0] || n.productName==p[1] || n.productName==p[2]|| n.productName==p[3]|| n.productName==p[4])
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product[0].productId || n.productid==product[1].productId || n.productid==product[2].productId || n.productid==product[3].productId|| n.productid==product[4].productId) 
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+        if(p.length==6)
+        {
+            fs.readFile(fname2,"utf8",function(err,data){
+                if(err)console.log(err)
+                else{
+                    let productArray=JSON.parse(data)
+                    let product=productArray.filter(n=>n.productName==p[0] || n.productName==p[1] || n.productName==p[2]|| n.productName==p[3]|| n.productName==p[4]|| n.productName==p[5])
+                    fs.readFile(fname3,"utf8",function(err,data){
+                        if(err)console.log(err)
+                        else{
+                            let purchaseArray=JSON.parse(data)
+                            let purchase=purchaseArray.filter(n=>n.productid==product[0].productId || n.productid==product[1].productId || n.productid==product[2].productId || n.productid==product[3].productId|| n.productid==product[4].productId|| n.productid==product[5].productId) 
+                            res.send(purchase)
+                        }
+                    }) 
+                }
+            }) 
+        }
+    }
+    else if (shopname)
+    {
+        fs.readFile(fname1,"utf8",function(err,data){
             if(err)res.status(404).send(err)
             else{
-                let purchaseArray=JSON.parse(data)
-                let purchase=purchaseArray.filter(n=>n.productid==productid)
-                res.send(purchase)
+                let shopArray=JSON.parse(data)
+                let shop=shopArray.find(n=>n.name==shopname)
+                fs.readFile(fname3,"utf8",function(err,data){
+                    if(err)res.status(404).send(err)
+                    else{
+                        let purchaseArray=JSON.parse(data)
+                        let pur=purchaseArray.find(n=>n.shopId==shop.shopId)
+                        res.send(pur)
+                    }
+                })
             }
-        }) 
+        })
     }
     else if (sort)
     {
@@ -231,7 +354,7 @@ app.get("/totalPurchase/shop/:id",function(req,res){
             let purchaseArray=JSON.parse(data)
             let purchase=purchaseArray.filter(n=>n.shopId==id)
             let sum=purchase.reduce((acc,curr)=>acc+curr.quantity,0)
-            let totalpurchase={totalpurchase:sum}
+            let totalpurchase={totalpurchase:sum,productid:purchase.productId}
             if(sum)res.send(totalpurchase)
             else res.status(404).send("No Data Found")
         }
@@ -245,7 +368,7 @@ app.get("/totalPurchase/product/:id",function(req,res){
             let purchaseArray=JSON.parse(data)
             let purchase=purchaseArray.filter(n=>n.productid==id)
             let sum=purchase.reduce((acc,curr)=>acc+curr.quantity,0)
-            let totalpurchase={totalpurchase:sum}
+            let totalpurchase={totalpurchase:sum,shopId:purchase.shopId}
             if(sum)res.send(totalpurchase)
             else res.status(404).send("No Data Found")
         }

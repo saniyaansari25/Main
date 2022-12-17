@@ -132,7 +132,76 @@ app.get("/purchases",function(req,res){
     let sort=req.query.sort
     let shopname=req.query.shopname
     
-    if(productname)
+    if (shopname)
+    {
+        let name=[shopname]
+        console.log(name)
+        fs.readFile(fname1,"utf8",function(err,data){
+            if(err)res.status(404).send(err)
+            else{
+                let shopArray=JSON.parse(data)
+                let shop=shopArray.find(n=>n.name==name[0])
+                console.log("shop",shop)
+                fs.readFile(fname3,"utf8",function(err,data){
+                    if(err)res.status(404).send(err)
+                    else{
+                        let purchaseArray=JSON.parse(data)
+                        let pur=purchaseArray.filter(n=>n.shopId==shop.shopId)
+                        res.send(pur)
+                    }
+                })
+            }
+        })
+    }
+    else if (sort)
+    {
+        if(sort=='QtyAsc')
+        {
+            fs.readFile(fname3,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let purchaseArray=JSON.parse(data)
+                    let purchase=purchaseArray.sort((a,b)=>(+a.quantity)-(+b.quantity))
+                    res.send(purchase)
+                }
+            }) 
+        }
+        if(sort=='QtyDesc')
+        {
+            fs.readFile(fname3,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let purchaseArray=JSON.parse(data)
+                    let purchase=purchaseArray.sort((a,b)=>(+b.quantity)-(+a.quantity))
+                    res.send(purchase)
+                }
+            }) 
+        }
+        if(sort=='ValueAsc')
+        {
+            fs.readFile(fname3,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let purchaseArray=JSON.parse(data)
+                    let purchase=purchaseArray.sort((a,b)=>(+a.quantity*a.price)-(+b.quantity*b.price))
+                    res.send(purchase)
+                }
+            }) 
+        }
+        if(sort=='ValueDesc')
+        {
+            fs.readFile(fname3,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let purchaseArray=JSON.parse(data)
+                    let purchase=purchaseArray.sort((a,b)=>(+b.quantity*b.price)-(+a.quantity*a.price))
+                    res.send(purchase)
+                }
+            })
+        }
+    }
+    
+    else if(productname)
     {
         let p=productname.split(',')
         console.log(p)
@@ -244,71 +313,6 @@ app.get("/purchases",function(req,res){
                     }) 
                 }
             }) 
-        }
-    }
-    else if (shopname)
-    {
-        fs.readFile(fname1,"utf8",function(err,data){
-            if(err)res.status(404).send(err)
-            else{
-                let shopArray=JSON.parse(data)
-                let shop=shopArray.find(n=>n.name==shopname)
-                fs.readFile(fname3,"utf8",function(err,data){
-                    if(err)res.status(404).send(err)
-                    else{
-                        let purchaseArray=JSON.parse(data)
-                        let pur=purchaseArray.find(n=>n.shopId==shop.shopId)
-                        res.send(pur)
-                    }
-                })
-            }
-        })
-    }
-    else if (sort)
-    {
-        if(sort=='QtyAsc')
-        {
-            fs.readFile(fname3,"utf8",function(err,data){
-                if(err)res.status(404).send(err)
-                else{
-                    let purchaseArray=JSON.parse(data)
-                    let purchase=purchaseArray.sort((a,b)=>(+a.quantity)-(+b.quantity))
-                    res.send(purchase)
-                }
-            }) 
-        }
-        if(sort=='QtyDesc')
-        {
-            fs.readFile(fname3,"utf8",function(err,data){
-                if(err)res.status(404).send(err)
-                else{
-                    let purchaseArray=JSON.parse(data)
-                    let purchase=purchaseArray.sort((a,b)=>(+b.quantity)-(+a.quantity))
-                    res.send(purchase)
-                }
-            }) 
-        }
-        if(sort=='ValueAsc')
-        {
-            fs.readFile(fname3,"utf8",function(err,data){
-                if(err)res.status(404).send(err)
-                else{
-                    let purchaseArray=JSON.parse(data)
-                    let purchase=purchaseArray.sort((a,b)=>(+a.quantity*a.price)-(+b.quantity*b.price))
-                    res.send(purchase)
-                }
-            }) 
-        }
-        if(sort=='ValueDesc')
-        {
-            fs.readFile(fname3,"utf8",function(err,data){
-                if(err)res.status(404).send(err)
-                else{
-                    let purchaseArray=JSON.parse(data)
-                    let purchase=purchaseArray.sort((a,b)=>(+b.quantity*b.price)-(+a.quantity*a.price))
-                    res.send(purchase)
-                }
-            })
         }
     }
     else {

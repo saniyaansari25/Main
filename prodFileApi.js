@@ -13,7 +13,6 @@ app.use(function(req,res,next){
     );
     next();
 })
-//const port=2410;
 var port=process.env.PORT || 2410;
 app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 
@@ -125,6 +124,18 @@ app.put("/products/:id",function(req,res){
             })
         }
         else res.status(404).send("No data Found")
+    })
+})
+app.get("/purchases/shops/:id",function(req,res){
+    let id=+req.params.id
+    fs.readFile(fname3,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let purchaseArray=JSON.parse(data)
+            let purchase=purchaseArray.filter(n=>n.shopId==id)
+            if(purchase)res.send(purchase)
+            else res.status(404).send("No Data Found")
+        }
     })
 })
 app.get("/purchases",function(req,res){
@@ -326,18 +337,7 @@ app.get("/purchases",function(req,res){
     }
     
 })
-app.get("/purchases/shops/:id",function(req,res){
-    let id=+req.params.id
-    fs.readFile(fname3,"utf8",function(err,data){
-        if(err)res.status(404).send(err)
-        else{
-            let purchaseArray=JSON.parse(data)
-            let purchase=purchaseArray.filter(n=>n.shopId==id)
-            if(purchase)res.send(purchase)
-            else res.status(404).send("No Data Found")
-        }
-    })
-})
+
 app.get("/purchases/products/:id",function(req,res){
     let id=+req.params.id
     fs.readFile(fname3,"utf8",function(err,data){
@@ -356,10 +356,44 @@ app.get("/totalPurchase/shop/:id",function(req,res){
         if(err)res.status(404).send(err)
         else{
             let purchaseArray=JSON.parse(data)
+           
             let purchase=purchaseArray.filter(n=>n.shopId==id)
-            let sum=purchase.reduce((acc,curr)=>acc+curr.quantity,0)
-            let totalpurchase={totalpurchase:sum,productid:purchase.productId}
-            if(sum)res.send(totalpurchase)
+            
+            let pOne=purchase.filter(n=>n.productid==1)
+            let sum1=pOne.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pTwo=purchase.filter(n=>n.productid==2)
+            let sum2=pTwo.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pThree=purchase.filter(n=>n.productid==3)
+            let sum3=pThree.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pFour=purchase.filter(n=>n.productid==4)
+            let sum4=pFour.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pFive=purchase.filter(n=>n.productid==5)
+            let sum5=pFive.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pSix=purchase.filter(n=>n.productid==6)
+            let sum6=pSix.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pSeven=purchase.filter(n=>n.productid==7)
+            let sum7=pSeven.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pEight=purchase.filter(n=>n.productid==8)
+            let sum8=pEight.reduce((acc,curr)=>acc+curr.quantity,0)
+            
+            let totalpurchase=[
+                {totalpurchase:sum1,productid:1},
+                {totalpurchase:sum2,productid:2},
+                {totalpurchase:sum3,productid:3},
+                {totalpurchase:sum4,productid:4},
+                {totalpurchase:sum5,productid:5},
+                {totalpurchase:sum6,productid:6},
+                {totalpurchase:sum7,productid:7},
+                {totalpurchase:sum8,productid:8},
+            ]
+            if(sum1)res.send(totalpurchase)
             else res.status(404).send("No Data Found")
         }
     })
@@ -371,9 +405,26 @@ app.get("/totalPurchase/product/:id",function(req,res){
         else{
             let purchaseArray=JSON.parse(data)
             let purchase=purchaseArray.filter(n=>n.productid==id)
-            let sum=purchase.reduce((acc,curr)=>acc+curr.quantity,0)
-            let totalpurchase={totalpurchase:sum,shopId:purchase.shopId}
-            if(sum)res.send(totalpurchase)
+
+            let pOne=purchase.filter(n=>n.shopId==1)
+            let sum1=pOne.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pTwo=purchase.filter(n=>n.shopId==2)
+            let sum2=pTwo.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pThree=purchase.filter(n=>n.shopId==3)
+            let sum3=pThree.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let pFour=purchase.filter(n=>n.shopId==4)
+            let sum4=pFour.reduce((acc,curr)=>acc+curr.quantity,0)
+
+            let totalpurchase=[
+                {totalpurchase:sum1,shopId:1},
+                {totalpurchase:sum2,shopId:2},
+                {totalpurchase:sum3,shopId:3},
+                {totalpurchase:sum4,shopId:4},
+            ]
+            if(sum1)res.send(totalpurchase)
             else res.status(404).send("No Data Found")
         }
     })

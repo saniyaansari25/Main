@@ -31,7 +31,20 @@ const client = new Client({
 client.connect(function (res, error) {
     console.log(`Connected!!!`);
 });
-
+app.get("/resetPurchase",function(req,res){
+    let query="DELETE FROM purchase";
+    client.query(query,function(err,result){
+        if(err)res.status(404).send("No Data Found")
+        else{
+            let values=purchases.map(n=>[n.purchaseId,n.shopId,n.productid,n.quantity,n.price])
+            let query1=`INSERT INTO purchase (purchaseId,shopId,productid,quantity,price)VALUES ($1,$2,$3,$4,$5);`;
+            client.query(query1,[values[0]],function(err,result){
+                if(err)console.log(err)
+                else res.send(result.rows)
+            })
+        }
+    })
+})
 app.get("/reset",function(req,res){
     
     let query="DELETE FROM shop";
@@ -74,15 +87,13 @@ app.get("/reset",function(req,res){
                                                                     if(err)console.log(err)
                                                                     client.query(query1,values[7],function(err,result){
                                                                         if(err)console.log(err)
-                                                                        else{
-
+                                                                        else {
                                                                             let query="DELETE FROM purchase";
                                                                             client.query(query,function(err,result){
                                                                                 if(err)res.status(404).send("No Data Found")
-                                                                                else {
-                                                                                    let values=purchases.map(n=>[n.shopId,n.productid,n.quantity,n.price])
-                                                                                    console.log(values[0])
-                                                                                    let query1=`INSERT INTO purchase (shopId,productid,quantity,price)VALUES ($1,$2,$3,$4)`;
+                                                                                else{
+                                                                                    let values=purchases.map(n=>[n.purchaseId,n.shopId,n.productid,n.quantity,n.price])
+                                                                                    let query1=`INSERT INTO purchase (purchaseId,shopId,productid,quantity,price)VALUES ($1,$2,$3,$4,$5);`;
                                                                                     client.query(query1,values[0],function(err,result){
                                                                                         if(err)console.log(err)
                                                                                         client.query(query1,values[1],function(err,result){
@@ -99,7 +110,196 @@ app.get("/reset",function(req,res){
                                                                                                                 if(err)console.log(err)
                                                                                                                 client.query(query1,values[7],function(err,result){
                                                                                                                     if(err)console.log(err)
-                                                                                                                    else res.send(result.rows)
+                                                                                                                    client.query(query1,values[8],function(err,result){
+                                                                                                                        if(err)console.log(err)
+                                                                                                                        client.query(query1,values[9],function(err,result){
+                                                                                                                            if(err)console.log(err)
+                                                                                                                            client.query(query1,values[10],function(err,result){
+                                                                                                                                if(err)console.log(err)
+                                                                                                                                client.query(query1,values[11],function(err,result){
+                                                                                                                                    if(err)console.log(err)
+                                                                                                                                    client.query(query1,values[12],function(err,result){
+                                                                                                                                        if(err)console.log(err)
+                                                                                                                                        client.query(query1,values[13],function(err,result){
+                                                                                                                                            if(err)console.log(err)
+                                                                                                                                            client.query(query1,values[14],function(err,result){
+                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                client.query(query1,values[15],function(err,result){
+                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                    client.query(query1,values[16],function(err,result){
+                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                        client.query(query1,values[17],function(err,result){
+                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                            client.query(query1,values[18],function(err,result){
+                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                client.query(query1,values[19],function(err,result){
+                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                    client.query(query1,values[20],function(err,result){
+                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                        client.query(query1,values[21],function(err,result){
+                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                            client.query(query1,values[22],function(err,result){
+                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                client.query(query1,values[23],function(err,result){
+                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                    client.query(query1,values[24],function(err,result){
+                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                        client.query(query1,values[25],function(err,result){
+                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                            client.query(query1,values[26],function(err,result){
+                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                client.query(query1,values[27],function(err,result){
+                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                    client.query(query1,values[28],function(err,result){
+                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                        client.query(query1,values[29],function(err,result){
+                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                            client.query(query1,values[30],function(err,result){
+                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                client.query(query1,values[31],function(err,result){
+                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                    client.query(query1,values[32],function(err,result){
+                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                        client.query(query1,values[33],function(err,result){
+                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                            client.query(query1,values[34],function(err,result){
+                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                client.query(query1,values[35],function(err,result){
+                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                    client.query(query1,values[36],function(err,result){
+                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                        client.query(query1,values[37],function(err,result){
+                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                            client.query(query1,values[38],function(err,result){
+                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                client.query(query1,values[39],function(err,result){
+                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                    client.query(query1,values[40],function(err,result){
+                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                        client.query(query1,values[41],function(err,result){
+                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                            client.query(query1,values[42],function(err,result){
+                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                client.query(query1,values[43],function(err,result){
+                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                    client.query(query1,values[44],function(err,result){
+                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                        client.query(query1,values[45],function(err,result){
+                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                            client.query(query1,values[46],function(err,result){
+                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                client.query(query1,values[47],function(err,result){
+                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                    client.query(query1,values[48],function(err,result){
+                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                        client.query(query1,values[49],function(err,result){
+                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                            client.query(query1,values[50],function(err,result){
+                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                client.query(query1,values[51],function(err,result){
+                                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                    client.query(query1,values[52],function(err,result){
+                                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                        client.query(query1,values[53],function(err,result){
+                                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                            client.query(query1,values[54],function(err,result){
+                                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                client.query(query1,values[55],function(err,result){
+                                                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                    client.query(query1,values[56],function(err,result){
+                                                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                        client.query(query1,values[57],function(err,result){
+                                                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                            client.query(query1,values[58],function(err,result){
+                                                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                client.query(query1,values[59],function(err,result){
+                                                                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                    client.query(query1,values[60],function(err,result){
+                                                                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                        client.query(query1,values[61],function(err,result){
+                                                                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                            client.query(query1,values[62],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                client.query(query1,values[63],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                    client.query(query1,values[64],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                        client.query(query1,values[65],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                            client.query(query1,values[66],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                                client.query(query1,values[67],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                                    if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                                    client.query(query1,values[68],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                                        if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                                        client.query(query1,values[69],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                                            if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                                            client.query(query1,values[70],function(err,result){
+                                                                                                                                                                                                                                                                                                                                                                                if(err)console.log(err)
+                                                                                                                                                                                                                                                                                                                                                                                else res.send(result.rows)
+                                                                                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                })
+                                                                                                                                                                                            })
+                                                                                                                                                                                        })
+                                                                                                                                                                                    })
+                                                                                                                                                                                })
+                                                                                                                                                                            })
+                                                                                                                                                                        })
+                                                                                                                                                                    })
+                                                                                                                                                                })
+                                                                                                                                                            })
+                                                                                                                                                        })
+                                                                                                                                                    })
+                                                                                                                                                })
+                                                                                                                                            })
+                                                                                                                                        })
+                                                                                                                                    })
+                                                                                                                                })
+                                                                                                                            })
+                                                                                                                        })
+                                                                                                                    })
                                                                                                                 })
                                                                                                             })
                                                                                                         })
@@ -108,11 +308,8 @@ app.get("/reset",function(req,res){
                                                                                             })
                                                                                         })
                                                                                     })
-
                                                                                 }
-        
                                                                             })
-
                                                                         }
                                                                 
                                                                     })
@@ -209,8 +406,57 @@ app.get("/purchases",function(req,res){
     let shopname=req.query.shopname
     let sort=req.query.sort
     
-
-    if(productname){
+    if(shopname)
+    {
+        
+        let values=[shopname]
+        
+        let query="SELECT * FROM purchase where shopId=(SELECT id FROM shop where name=$1)";
+        client.query(query,values,function(err,result){
+            if(err)res.status(404).send(err)
+            else res.send(result.rows)
+        }) 
+    }
+    else if (sort)
+    {
+        if(sort=='QtyAsc')
+        {
+            
+            let sql1="SELECT * FROM purchase ORDER By quantity ASC";
+            client.query(sql1,function(err,result){
+                if(err)res.status(404).send(err)
+                else res.send(result.rows)
+            })
+        }
+        if(sort=='QtyDesc')
+        {
+            
+            let sql1="SELECT * FROM purchase ORDER By quantity DESC";
+            client.query(sql1,function(err,result){
+                if(err)res.status(404).send(err)
+                else res.send(result.rows)
+            })
+        }
+        if(sort=='ValueAsc')
+        {
+            
+            let sql1="SELECT * FROM purchase ORDER By quantity*price ASC";
+            client.query(sql1,function(err,result){
+                if(err)res.status(404).send(err)
+                else res.send(result.rows)
+            })
+        }
+        if(sort=='ValueDesc')
+        {
+            
+            let sql1="SELECT * FROM purchase ORDER By quantity*price DESC";
+            client.query(sql1,function(err,result){
+                if(err)res.status(404).send(err)
+                else res.send(result.rows)
+            })
+        }
+    }
+    else if(productname){
         let p=productname.split(',')
         console.log(p)
         console.log(p.length)
@@ -295,56 +541,8 @@ app.get("/purchases",function(req,res){
             }) 
         }
     }
-    else if(shopname)
-    {
-        
-        let values=[shopname]
-        
-        let query="SELECT * FROM purchase where shopId=(SELECT id FROM shop where name=$1)";
-        client.query(query,values,function(err,result){
-            if(err)res.status(404).send(err)
-            else res.send(result.rows)
-        }) 
-    }
-    else if (sort)
-    {
-        if(sort=='QtyAsc')
-        {
-            
-            let sql1="SELECT * FROM purchase ORDER By quantity ASC";
-            client.query(sql1,function(err,result){
-                if(err)res.status(404).send(err)
-                else res.send(result.rows)
-            })
-        }
-        if(sort=='QtyDesc')
-        {
-            
-            let sql1="SELECT * FROM purchase ORDER By quantity DESC";
-            client.query(sql1,function(err,result){
-                if(err)res.status(404).send(err)
-                else res.send(result.rows)
-            })
-        }
-        if(sort=='ValueAsc')
-        {
-            
-            let sql1="SELECT * FROM purchase ORDER By quantity*price ASC";
-            client.query(sql1,function(err,result){
-                if(err)res.status(404).send(err)
-                else res.send(result.rows)
-            })
-        }
-        if(sort=='ValueDesc')
-        {
-            
-            let sql1="SELECT * FROM purchase ORDER By quantity*price DESC";
-            client.query(sql1,function(err,result){
-                if(err)res.status(404).send(err)
-                else res.send(result.rows)
-            })
-        }
-    }
+    
+    
     else {
         
         let query="SELECT * FROM purchase";

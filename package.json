@@ -2,10 +2,10 @@
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "prodFieApi.js",
+  "main": "prodApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node prodFileApi.js"
+    "start": "node prodApi.js"
   },
   "keywords": [
     "node",

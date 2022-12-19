@@ -70,7 +70,7 @@ app.get("/reset",function(req,res){
                                     else {
                                         let values=products.map(n=>[n.productId,n.productname,n.category,n.description])
                                         console.log(values[0])
-                                        let query1=`INSERT INTO product (productId,productName,category,description)VALUES ($1,$2,$3,$4)`;
+                                        let query1=`INSERT INTO product (productId,productname,category,description)VALUES ($1,$2,$3,$4)`;
                                         client.query(query1,values[0],function(err,result){
                                             if(err)console.log(err)
                                             client.query(query1,values[1],function(err,result){

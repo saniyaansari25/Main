@@ -435,8 +435,97 @@ app.get("/purchases",function(req,res){
     let productname=req.query.productname
     let shopname=req.query.shopname
     let sort=req.query.sort
-    
-    if(productname && sort && shopname){
+    if(productname && shopname && !sort){
+        let p=productname.split(',')
+        console.log(p)
+        console.log(p.length)
+        if(p.length==1)
+        {
+            console.log(shopname)
+            let values=productname.split(',')
+            values.push(shopname)
+            console.log(values)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$2) AND productid IN (SELECT productId FROM product where productName IN ($1)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==2)
+        {
+            console.log(shopname)
+            let values=productname.split(',')
+            values.push(shopname)
+            console.log(values)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$3) AND productid IN (SELECT productId FROM product where productName IN ($1,$2)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==3)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            console.log(values)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$4) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==4)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$5) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==5)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$6) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==6)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$7) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==7)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$8) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+        if(p.length==8)
+        {
+            let values=productname.split(',')
+            values.push(shopname)
+            let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$9) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8)))";
+            client.query(query,values,function(err,result){
+                if(err)res.status(404).send("No Data Found")
+                else res.send(result.rows)
+            }) 
+        }
+    }
+    else if(productname && sort && shopname){
         if(sort=='QtyAsc')
         {
             let p=productname.split(',')

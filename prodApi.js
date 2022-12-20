@@ -13,8 +13,8 @@ app.use(function(req,res,next){
     );
     next();
 })
-//const port=2410;
 var port=process.env.PORT || 2410;
+//const port=2410;
 app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 let {data}=require("./prodData.js")
 let {shops,products,purchases}=data
@@ -70,7 +70,7 @@ app.get("/reset",function(req,res){
                                     else {
                                         let values=products.map(n=>[n.productId,n.productname,n.category,n.description])
                                         console.log(values[0])
-                                        let query1=`INSERT INTO product (productId,productname,category,description)VALUES ($1,$2,$3,$4)`;
+                                        let query1=`INSERT INTO product (productId,productName,category,description)VALUES ($1,$2,$3,$4)`;
                                         client.query(query1,values[0],function(err,result){
                                             if(err)console.log(err)
                                             client.query(query1,values[1],function(err,result){
@@ -436,8 +436,386 @@ app.get("/purchases",function(req,res){
     let shopname=req.query.shopname
     let sort=req.query.sort
     
-    
-    if(productname && sort && !shopname){
+    if(productname && sort && shopname){
+        if(sort=='QtyAsc')
+        {
+            let p=productname.split(',')
+            console.log(p)
+            console.log(p.length)
+            if(p.length==1)
+            {
+                console.log(shopname)
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$2) AND productid IN (SELECT productId FROM product where productName IN ($1))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==2)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$3) AND productid IN (SELECT productId FROM product where productName IN ($1,$2))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==3)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$4) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==4)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$5) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==5)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$6) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==6)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$7) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==7)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$8) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==8)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$9) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8))) ORDER BY quantity ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+       } 
+       if(sort=='QtyDesc')
+        {
+            let p=productname.split(',')
+            console.log(p)
+            console.log(p.length)
+            if(p.length==1)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$2) AND productid IN (SELECT productId FROM product where productName IN ($1))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==2)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$3) AND productid IN (SELECT productId FROM product where productName IN ($1,$2))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==3)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$4) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==4)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$5) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==5)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$6) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==6)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$7) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==7)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$8) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==8)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$9) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8))) ORDER BY quantity DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+       } 
+       if(sort=='ValueDesc')
+        {
+            let p=productname.split(',')
+            console.log(p)
+            console.log(p.length)
+            if(p.length==1)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$2) AND productid IN (SELECT productId FROM product where productName IN ($1))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==2)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$3) AND productid IN (SELECT productId FROM product where productName IN ($1,$2))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==3)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$4) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==4)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$5) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==5)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$6) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==6)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$7) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==7)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$8) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==8)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$9) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8))) ORDER BY quantity*price DESC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+       } 
+       if(sort=='ValueAsc')
+        {
+            let p=productname.split(',')
+            console.log(p)
+            console.log(p.length)
+            if(p.length==1)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$2) AND productid IN (SELECT productId FROM product where productName IN ($1))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==2)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$3) AND productid IN (SELECT productId FROM product where productName IN ($1,$2))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==3)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$4) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==4)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$5) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==5)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$6) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==6)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$7) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==7)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$8) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+            if(p.length==8)
+            {
+                let values=productname.split(',')
+                values.push(shopname)
+                console.log(values)
+                let query="SELECT * FROM purchase where (shopId=(SELECT id FROM shop where name=$9) AND productid IN (SELECT productId FROM product where productName IN ($1,$2,$3,$4,$5,$6,$7,$8))) ORDER BY quantity*price ASC";
+                client.query(query,values,function(err,result){
+                    if(err)res.status(404).send("No Data Found")
+                    else res.send(result.rows)
+                }) 
+            }
+       } 
+    }
+    else if(productname && sort && !shopname){
        if(sort=='QtyAsc')
         {
             let p=productname.split(',')

@@ -2,10 +2,10 @@
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "serverEmpApp.js",
+  "main": "serverGbiApp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serverEmpApp.js"
+    "start": "node serverGbiApp.js"
   },
   "keywords": [
     "node",

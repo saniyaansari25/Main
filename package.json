@@ -2,10 +2,10 @@
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "serverGbiApp.js",
+  "main": "serverFacApp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serverGbiApp.js"
+    "start": "node serverFacApp.js"
   },
   "keywords": [
     "node",

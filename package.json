@@ -2,10 +2,10 @@
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "authTestServer.js",
+  "main": "task4Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node authTestServer.js"
+    "start": "node task4Server.js"
   },
   "keywords": [
     "node",

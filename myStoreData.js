@@ -7,7 +7,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/125779/pexels-photo-125779.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
     name: "Silver",
-    price: 1600
+    price: 1600,
+    qty:0
   },
   {
      id: 2,
@@ -16,7 +17,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/1697566/pexels-photo-1697566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Black",
-    price: 899
+    price: 899,
+    qty:0
   },
   {
      id: 3,
@@ -26,7 +28,8 @@ let data=[
     imgLink:
     "https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Chronograph",
-    price: 1199
+    price: 1199,
+    qty:0
   },
   {
      id: 4,
@@ -35,7 +38,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/236915/pexels-photo-236915.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Classic",
-    price: 1250
+    price: 1250,
+    qty:0
   },
   {
      id: 5,
@@ -44,7 +48,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Apple v1",
-    price: 999
+    price: 999,
+    qty:0
   },
   {
      id: 6,
@@ -53,7 +58,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/47339/mechanics-movement-feinmechanik-wrist-watch-47339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Jewelled",
-    price: 1999
+    price: 1999,
+    qty:0
   },
   {
      id: 7,
@@ -62,7 +68,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Tinted Red",
-    price: 399
+    price: 399,
+    qty:0
   },
   {
      id: 8,
@@ -71,7 +78,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Oldies",
-    price: 199
+    price: 199,
+    qty:0
   },
   {
      id: 9,
@@ -80,7 +88,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/1362558/pexels-photo-1362558.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Youthful",
-    price: 219
+    price: 219,
+    qty:0
   },
   {
      id: 10,
@@ -89,7 +98,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/65659/glasses-glass-circle-light-transmittance-65659.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     name: "Classic Dark",
-    price: 249
+    price: 249,
+    qty:0
   },
   {
      id: 11,
@@ -98,7 +108,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/277406/pexels-photo-277406.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Apple v2",
-    price: 1499
+    price: 1499,
+    qty:0
   },
   {
      id: 12,
@@ -107,7 +118,8 @@ let data=[
     imgLink:
       "https://as1.ftcdn.net/jpg/02/14/48/72/500_F_214487233_Aahw3DohDu6dSSfMqWCcU1QDatxpDt6E.jpg",
     name: "Fab Brown",
-    price: 149
+    price: 149,
+    qty:0
   },
   {
      id: 13,
@@ -116,7 +128,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/2534961/pexels-photo-2534961.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Travel Lite",
-    price: 199
+    price: 199,
+    qty:0
   },
   {
      id: 14,
@@ -125,7 +138,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Chic Leather",
-    price: 749
+    price: 749,
+    qty:0
   },
   {
      id: 15,
@@ -134,7 +148,8 @@ let data=[
     imgLink:
       "https://img.shopstyle-cdn.com/pim/c7/a6/c7a695a8db5a375b222f15bea045bdea_xlarge.jpg",
     name: "Raw Edge",
-    price: 799
+    price: 799,
+    qty:0
   },
   {
      id: 16,
@@ -143,7 +158,8 @@ let data=[
     imgLink:
       "https://img.shopstyle-cdn.com/pim/81/78/8178fa6c3b27d3f3e0fe18d019c992ea_xlarge.jpg",
     name: "Goofy Black",
-    price: 349
+    price: 349,
+    qty:0
   },
   {
      id: 17,
@@ -152,7 +168,8 @@ let data=[
     imgLink:
       "https://cdn.shopify.com/s/files/1/0898/5824/products/QUAY_HIGHKEY_Mini_BLACK_FADE_FRONT_450x.jpg",
     name: "Quay Shades",
-    price: 479
+    price: 479,
+    qty:0
   },
   {
      id: 18,
@@ -161,7 +178,8 @@ let data=[
     imgLink:
       "https://as1.ftcdn.net/jpg/02/02/45/86/500_F_202458696_CYlcJbJfjgUb2VgQnPSUxHU79v6I3SC6.jpg",
     name: "Classic Brown",
-    price: 128
+    price: 128,
+    qty:0
   },
   {
      id: 19,
@@ -170,7 +188,8 @@ let data=[
     imgLink:
       "https://images.pexels.com/photos/2305000/pexels-photo-2305000.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     name: "Funky Jute",
-    price: 99
+    price: 99,
+    qty:0
   }
 ];
 module.exports.data=data;

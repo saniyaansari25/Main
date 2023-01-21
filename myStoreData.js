@@ -166,7 +166,7 @@ let data=[
     category: "Sunglasses",
     description: "Min black faded front shades",
     imgLink:
-      "https://cdn.shopify.com/s/files/1/0898/5824/products/QUAY_HIGHKEY_Mini_BLACK_FADE_FRONT_450x.jpg",
+      "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/1p_mode.png",
     name: "Quay Shades",
     price: 479,
     qty:0

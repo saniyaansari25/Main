@@ -14,10 +14,20 @@ app.use(function(req,res,next){
     );
     next();
 });
+app.use(showUrlMethod)
 var port=process.env.PORT || 2410;
 //const port=2410;
 app.listen(port,()=>console.log(`Listening on port ${port}!`));
 
+let arr=[]
+function showUrlMethod(req,res,next){
+    let a={Url : `${req.url}`, Method : `${req.method}`}
+    arr.push(a)
+    
+    console.log(`Url : ${req.url} Method : ${req.method}`)
+    
+    next();
+}
 
 let {data}=require("./myStoreData.js");
 let orders=[];
@@ -147,4 +157,8 @@ app.delete("/products/:id",function(req,res){
     let index=data.findIndex(n=>n.id==id)
     data.splice(index,1)
     res.send(data)
+})
+app.get("/allRequests",function(req,res){
+    console.log("In the route : GET /allRequests")
+    res.send({route : "/allRequests",user:req.user,arr:arr})
 })

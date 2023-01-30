@@ -26,7 +26,7 @@ let fname1="furniture.json";
 let fname2="cart.json";
 let fname3="add1.json";
 
-app.get("/",function(req,res){
+app.get("/product",function(req,res){
     let data1=JSON.stringify(data)
     fs.writeFile(fname1,data1,function(err){
         if(err)res.status(404).send(err)

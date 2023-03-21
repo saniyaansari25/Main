@@ -2,10 +2,10 @@
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "movieServer.js",
+  "main": "flipServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node movieServer.js"
+    "start": "node flipServer.js"
   },
   "keywords": [
     "node",
@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "passport": "^0.6.0",
     "pg": "^8.8.0"

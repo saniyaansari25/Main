@@ -28,8 +28,8 @@ let fname1="brand.json";
 let fname2="mobiles.json";
 let fname3="review.json";
 let fname4="pincode.json";
-let fname5="cart3.json";
-let fname6="wishList5.json"
+let fname5="cart5.json";
+let fname6="wishList4.json"
 
 let arr=[]
 function showUrlMethod(req,res,next){

@@ -23,13 +23,16 @@ app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 let { brand,mobiles,review,pincode }=require("./flipData.js");
 let cart=[]
 let wishList=[]
+let comp=[]
+
 let fs=require("fs");
 let fname1="brand.json";
 let fname2="mobiles.json";
 let fname3="review.json";
 let fname4="pincode.json";
-let fname5="cart5.json";
-let fname6="wishList4.json"
+let fname5="cart29.json";
+let fname6="wishList24.json"
+let fname7="comp.json"
 
 let arr=[]
 function showUrlMethod(req,res,next){
@@ -48,6 +51,7 @@ app.get("/",function(req,res){
     let data4=JSON.stringify(pincode)
     let data5=JSON.stringify(cart)
     let data6=JSON.stringify(wishList)
+    let data7=JSON.stringify(comp)
 
     fs.writeFile(fname1,data1,function(err){
         if(err) res.status(404).send(err)
@@ -61,7 +65,10 @@ app.get("/",function(req,res){
                         if(err) res.status(404).send(err)
                         fs.writeFile(fname6,data6,function(err){
                             if(err) res.status(404).send(err)
-                            else res.send("Data in file is reset")
+                            fs.writeFile(fname7,data7,function(err){
+                                if(err) res.status(404).send(err)
+                                else res.send("Data in file is reset")
+                            })
                         })
                     })
                 })
@@ -106,7 +113,25 @@ app.get("/wishList",function(req,res){
         }
     })
 })
-
+app.post("/compare",function(req,res){
+    let body=req.body
+    let newShop={...body}
+    comp.push(newShop)
+    let dataA=JSON.stringify(comp)
+    fs.writeFile(fname7,dataA,function(err){
+        if(err)res.status(404).send(err)
+        else res.send(comp)
+    })
+})
+app.get("/compare",function(req,res){
+    fs.readFile(fname7,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let shopArray=JSON.parse(data)
+            res.send(shopArray)
+        }
+    })
+})
 app.post("/cart",function(req,res){
     let body=req.body
     let newShop={...body}
@@ -142,9 +167,10 @@ app.put("/products/:id/edit",function(req,res){
         if(err)res.status(404).send(err)
         else{
             let productArray=JSON.parse(data)
-            let index=productArray.findIndex(n=>n.id===id)
+            let index=productArray.findIndex(n=>n.id==id)
             if(index>=0)
             {
+                
                 let updatedProduct={...productArray[index],...body}
                 productArray[index]=updatedProduct
                 let data1=JSON.stringify(productArray)
@@ -189,9 +215,12 @@ app.get("/pincode/:pincode/:productId",function(req,res){
         else{
             let shopArray=JSON.parse(data)
             let student=shopArray.find(st=>st.pincode==pincode)
-            console.log(student)
-            
-            res.send(student)
+            if(student){
+                let disp=student.mobileList.find(n=>n.id==productId)
+                console.log(student)
+                console.log(disp)
+                res.send(disp)
+            }
         }
     })
 })

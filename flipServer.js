@@ -30,9 +30,9 @@ let fname1="brand.json";
 let fname2="mobiles.json";
 let fname3="review.json";
 let fname4="pincode.json";
-let fname5="cart29.json";
-let fname6="wishList24.json"
-let fname7="comp.json"
+let fname5="cart09.json";
+let fname6="wishList04.json"
+let fname7="comp04.json"
 
 let arr=[]
 function showUrlMethod(req,res,next){
@@ -96,12 +96,16 @@ app.post("/login",function(req,res){
 })
 app.post("/wishList",function(req,res){
     let body=req.body
-    let newShop={...body}
-    wishList.push(newShop)
-    let dataA=JSON.stringify(wishList)
-    fs.writeFile(fname6,dataA,function(err){
+    fs.readFile(fname6,"utf8",function(err,data){
         if(err)res.status(404).send(err)
-        else res.send(wishList)
+        let Array=JSON.parse(data)
+        let newItem={...body}
+        Array.push(newItem)
+        let d1=JSON.stringify(Array)
+        fs.writeFile(fname6,d1,function(err){
+            if(err)res.status(404).send(err)
+            else res.send(newItem)
+        })
     })
 })
 app.get("/wishList",function(req,res){
@@ -110,6 +114,25 @@ app.get("/wishList",function(req,res){
         else{
             let shopArray=JSON.parse(data)
             res.send(shopArray)
+        }
+    })
+})
+app.delete("/wishList/:id",function(req,res){
+    let id=req.params.id
+    fs.readFile(fname6,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let shopArray=JSON.parse(data)
+            let index=shopArray.findIndex(n=>n.id==id)
+            if(index>0){
+                let delStu=shopArray.splice(index,1)
+                let d=JSON.stringify(shopArray)
+                fs.writeFile(fname6,d,function(err){
+                    if(err)res.status(404).send(err)
+                    else res.send(delStu)
+                })
+            }
+            else res.status(404).send("No Data Found")
         }
     })
 })
@@ -134,12 +157,16 @@ app.get("/compare",function(req,res){
 })
 app.post("/cart",function(req,res){
     let body=req.body
-    let newShop={...body}
-    cart.push(newShop)
-    let dataA=JSON.stringify(cart)
-    fs.writeFile(fname5,dataA,function(err){
+    fs.readFile(fname5,"utf8",function(err,data){
         if(err)res.status(404).send(err)
-        else res.send(cart)
+        let Array=JSON.parse(data)
+        let newItem={...body}
+        Array.push(newItem)
+        let d1=JSON.stringify(Array)
+        fs.writeFile(fname5,d1,function(err){
+            if(err)res.status(404).send(err)
+            else res.send(newItem)
+        })
     })
 })
 app.get("/cart",function(req,res){
@@ -148,6 +175,25 @@ app.get("/cart",function(req,res){
         else{
             let shopArray=JSON.parse(data)
             res.send(shopArray)
+        }
+    })
+})
+app.delete("/cart/:id",function(req,res){
+    let id=req.params.id
+    fs.readFile(fname5,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let shopArray=JSON.parse(data)
+            let index=shopArray.findIndex(n=>n.id==id)
+            if(index>0){
+                let delStu=shopArray.splice(index,1)
+                let d=JSON.stringify(shopArray)
+                fs.writeFile(fname5,d,function(err){
+                    if(err)res.status(404).send(err)
+                    else res.send(delStu)
+                })
+            }
+            else res.status(404).send("No Data Found")
         }
     })
 })

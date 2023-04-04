@@ -30,9 +30,9 @@ let fname1="brand.json";
 let fname2="mobiles.json";
 let fname3="review.json";
 let fname4="pincode.json";
-let fname5="cart09.json";
-let fname6="wishList04.json"
-let fname7="comp04.json"
+let fname5="cart099.json";
+let fname6="wishList094.json"
+let fname7="comp034.json"
 
 let arr=[]
 function showUrlMethod(req,res,next){
@@ -236,7 +236,13 @@ app.get("/product/:productId",function(req,res){
         else{
             let shopArray=JSON.parse(data)
             let student=shopArray.filter(st=>st.id===productId )
-            res.send(student)
+            fs.readFile(fname1,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let shopArray1=JSON.parse(data)
+                    res.send({product:student,brand:shopArray1})
+                }
+            })
         }
     })
 })
@@ -292,7 +298,7 @@ console.log("SORT",sort)
         if(err) res.status(404).send(err)
         else {
             let studentsArray=JSON.parse(data)
-            let student=studentsArray.filter(st=>st.category===category )
+            let student= category ? studentsArray.filter(st=>st.category===category ) : studentsArray
             if(page){
                 if(ram){
                    student=student.filter(st=>st.ram==ram)

@@ -30,9 +30,9 @@ let fname1="brand.json";
 let fname2="mobiles.json";
 let fname3="review.json";
 let fname4="pincode.json";
-let fname5="cart009.json";
-let fname6="wishList004.json"
-let fname7="comp064.json"
+let fname5="cart090.json";
+let fname6="wishList040.json"
+let fname7="comp040.json"
 
 let arr=[]
 function showUrlMethod(req,res,next){

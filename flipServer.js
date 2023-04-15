@@ -123,8 +123,9 @@ app.delete("/wishList/:id",function(req,res){
         if(err)res.status(404).send(err)
         else{
             let shopArray=JSON.parse(data)
+            let find=shopArray.find(n=>n.id==id)
             let index=shopArray.findIndex(n=>n.id==id)
-            if(index>0){
+            if(find){
                 let delStu=shopArray.splice(index,1)
                 let d=JSON.stringify(shopArray)
                 fs.writeFile(fname6,d,function(err){
@@ -138,12 +139,46 @@ app.delete("/wishList/:id",function(req,res){
 })
 app.post("/compare",function(req,res){
     let body=req.body
+    fs.readFile(fname7,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        let Array=JSON.parse(data)
+        let newItem={...body}
+        if(Array.length<3)Array.push(newItem)
+        let d1=JSON.stringify(Array)
+        fs.writeFile(fname7,d1,function(err){
+            if(err)res.status(404).send(err)
+            else res.send(newItem)
+        })
+    })
+
+
+    /*let body=req.body
     let newShop={...body}
     comp.push(newShop)
     let dataA=JSON.stringify(comp)
     fs.writeFile(fname7,dataA,function(err){
         if(err)res.status(404).send(err)
         else res.send(comp)
+    })*/
+})
+app.delete("/compare/:id",function(req,res){
+    let id=req.params.id
+    fs.readFile(fname7,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let shopArray=JSON.parse(data)
+            let find=shopArray.find(n=>n.id==id)
+            let index=shopArray.findIndex(n=>n.id==id)
+            if(find){
+                let delStu=shopArray.splice(index,1)
+                let d=JSON.stringify(shopArray)
+                fs.writeFile(fname7,d,function(err){
+                    if(err)res.status(404).send(err)
+                    else res.send(delStu)
+                })
+            }
+            else res.status(404).send("No Data Found")
+        }
     })
 })
 app.get("/compare",function(req,res){
@@ -184,8 +219,9 @@ app.delete("/cart/:id",function(req,res){
         if(err)res.status(404).send(err)
         else{
             let shopArray=JSON.parse(data)
+            let find=shopArray.find(n=>n.id==id)
             let index=shopArray.findIndex(n=>n.id==id)
-            if(index>0){
+            if(find){
                 let delStu=shopArray.splice(index,1)
                 let d=JSON.stringify(shopArray)
                 fs.writeFile(fname5,d,function(err){
@@ -213,8 +249,9 @@ app.put("/products/:id/edit",function(req,res){
         if(err)res.status(404).send(err)
         else{
             let productArray=JSON.parse(data)
+            let find=productArray.find(n=>n.id==id)
             let index=productArray.findIndex(n=>n.id==id)
-            if(index>=0)
+            if(find)
             {
                 
                 let updatedProduct={...productArray[index],...body}

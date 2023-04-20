@@ -213,6 +213,30 @@ app.get("/cart",function(req,res){
         }
     })
 })
+app.put("/cart/:id/edit",function(req,res){
+    let id=req.params.id
+    let body=req.body
+    fs.readFile(fname5,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let productArray=JSON.parse(data)
+            let find=productArray.find(n=>n.id==id)
+            let index=productArray.findIndex(n=>n.id==id)
+            if(find)
+            {
+                
+                let updatedProduct={...productArray[index],...body}
+                productArray[index]=updatedProduct
+                let data1=JSON.stringify(productArray)
+                fs.writeFile(fname5,data1,function(err){
+                    if(err)res.status(404).send(err)
+                    else res.send(productArray)
+                })
+            }
+            else res.status(404).send("No data Found")
+        }
+    })
+})
 app.delete("/cart/:id",function(req,res){
     let id=req.params.id
     fs.readFile(fname5,"utf8",function(err,data){
@@ -233,6 +257,7 @@ app.delete("/cart/:id",function(req,res){
         }
     })
 })
+
 app.get("/deals",function(req,res){
     fs.readFile(fname2,"utf8",function(err,data){
         if(err)res.status(404).send(err)

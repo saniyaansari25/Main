@@ -43,7 +43,6 @@ function showUrlMethod(req,res,next){
     
     next();
 }
-
 app.get("/",function(req,res){
     let data1=JSON.stringify(brand)
     let data2=JSON.stringify(mobiles)
@@ -73,6 +72,62 @@ app.get("/",function(req,res){
                     })
                 })
             })
+        })
+    })
+})
+app.post("/products",function(req,res){
+    let body=req.body
+    console.log("body",body.length)
+    
+    fs.readFile(fname2,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        let Array=JSON.parse(data)
+
+        let newItem={...body}
+        console.log("New",body)
+
+        if(body.length==1) Array.push(body[0]) 
+        if(body.length==2){
+            Array.push(body[0]) 
+            Array.push(body[1]) 
+        }
+        if(body.length==3){
+            Array.push(body[0]) 
+            Array.push(body[1]) 
+            Array.push(body[2]) 
+        }
+        if(body.length==4){
+            Array.push(body[0]) 
+            Array.push(body[1]) 
+            Array.push(body[2]) 
+            Array.push(body[3]) 
+        }
+        if(body.length==5){
+            Array.push(body[0]) 
+            Array.push(body[1]) 
+            Array.push(body[2]) 
+            Array.push(body[3]) 
+            Array.push(body[4]) 
+        }
+        let d1=JSON.stringify(Array)
+        fs.writeFile(fname2,d1,function(err){
+            if(err)res.status(404).send(err)
+            else res.send(newItem)
+        })
+    })
+    
+})
+app.post("/product",function(req,res){
+    let body=req.body
+    fs.readFile(fname2,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        let Array=JSON.parse(data)
+        let newItem={...body}
+        Array.push(newItem)
+        let d1=JSON.stringify(Array)
+        fs.writeFile(fname2,d1,function(err){
+            if(err)res.status(404).send(err)
+            else res.send(newItem)
         })
     })
 })
@@ -403,7 +458,9 @@ app.get("/products/:category/:brand",function(req,res){
         if(err) res.status(404).send(err)
         else {
             let studentsArray=JSON.parse(data)
-            let student=studentsArray.filter(st=>st.category===category && st.brand===brand)
+            console.log(studentsArray.length,"LENGTH")
+            //let student=studentsArray.filter(st=>st.category===category && st.brand===brand)
+            let student=studentsArray.filter(st=>st.brand===brand)
             if(page){
                res.send(makeData(page, size, student));
             }

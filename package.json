@@ -1,11 +1,12 @@
 {
+  "proxy": "http://localhost:3000",
   "name": "demonew",
   "version": "1.0.0",
   "description": "",
-  "main": "flipServer.js",
+  "main": "formServer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node flipServer.js"
+    "start": "node formServer.js"
   },
   "keywords": [
     "node",

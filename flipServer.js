@@ -140,6 +140,14 @@ app.post("/login",function(req,res){
     let email=req.body.email
     let password=req.body.password
     console.log(body)
+    res.send(body)
+    
+})
+/*app.post("/login",function(req,res){
+    let body=req.body
+    let email=req.body.email
+    let password=req.body.password
+    console.log(body)
     if(email=='test@gmail.com' && password=='test123')
     {
         res.send(body)
@@ -148,7 +156,7 @@ app.post("/login",function(req,res){
     {
         res.send(body)
     }
-})
+})*/
 app.post("/wishList",function(req,res){
     let body=req.body
     fs.readFile(fname6,"utf8",function(err,data){

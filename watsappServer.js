@@ -26,7 +26,7 @@ app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 let {contacts,msg}=require("./watsappData.js");
 let fs=require("fs");
 let fname1="contacts.json";
-let fname2="msg.json";
+let fname2="msg2.json";
 
 let arr=[]
 function showUrlMethod(req,res,next){
@@ -65,7 +65,88 @@ app.post("/login",function(req,res){
         })
     })
 })
-app.put("/send/:id",function(req,res){
+app.get("/friends",function(req,res){
+    fs.readFile(fname1,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else {
+            res.send({data})
+        }
+    })
+})
+
+
+app.post("/send",function(req,res){
+    let data=JSON.stringify(contacts)
+    
+    let body=req.body
+    fs.readFile(fname2,"utf8",function(err,data1){
+        if(err)res.status(404).send(err)
+        else{ 
+            let shopArray=JSON.parse(data1)   
+            shopArray.push(body) 
+            let data2=JSON.stringify(shopArray)       
+            fs.writeFile(fname2,data2,function(err){
+                if(err) res.status(404).send(err)
+                else res.send(shopArray)
+            })
+        }
+    })
+    
+})
+app.put("/friendList/:phone",function(req,res){
+    let data1=JSON.stringify(contacts)
+    let phone=req.params.phone
+    let body=req.body
+    fs.readFile(fname1,"utf8",function(err,data1){
+        if(err)res.status(404).send(err)
+        else{ 
+            let shopArray=JSON.parse(data1)   
+            let index=shopArray.findIndex(n=>n.phone==phone)
+            shopArray[index].lastMsg=body.lastMsg
+            let data2=JSON.stringify(shopArray)       
+            fs.writeFile(fname1,data2,function(err){
+                if(err) res.status(404).send(err)
+                else res.send(shopArray)
+            })
+        }
+    })
+    
+})
+app.get("/contacts",function(req,res){
+    fs.readFile(fname1,"utf8",function(err,data){
+        if(err)res.status(404).send(err)
+        else{
+            let d1=JSON.parse(data)
+            fs.readFile(fname2,"utf8",function(err,data1){
+                if(err)res.status(404).send(err)
+                else{
+                    let shopArray=JSON.parse(data1)
+                    res.send({data1:d1,data2:shopArray})
+                }
+            })
+        }
+    })
+})
+app.get("/:phone",function(req,res){
+    let phone=req.params.phone
+    fs.readFile(fname2,"utf8",function(err,data1){
+        if(err)res.status(404).send(err)
+        else{
+            let shopArray=JSON.parse(data1)
+            console.log(shopArray)
+            fs.readFile(fname1,"utf8",function(err,data){
+                if(err)res.status(404).send(err)
+                else{
+                    let shopArray1=JSON.parse(data)
+                    
+                    let find1=shopArray1.find(n=>n.phone==phone)
+                    res.send({data1:shopArray,data2:find1})
+                }
+            })
+        }
+    })
+})
+/*app.put("/send/:id",function(req,res){
     let id=req.params.id
     let body=req.body
     console.log(body,"body")
@@ -104,22 +185,8 @@ app.put("/send/:id",function(req,res){
         }
     })
     
-})
-app.get("/contacts",function(req,res){
-    fs.readFile(fname1,"utf8",function(err,data){
-        if(err)res.status(404).send(err)
-        else{
-            let d1=JSON.parse(data)
-            fs.readFile(fname2,"utf8",function(err,data1){
-                if(err)res.status(404).send(err)
-                else{
-                    let shopArray=JSON.parse(data1)
-                    res.send({data1:d1,data2:shopArray})
-                }
-            })
-        }
-    })
-})
+})*/
+
 app.delete("/chat/:id",function(req,res){
     let id=req.params.id
     fs.readFile(fname2,"utf8",function(err,data){

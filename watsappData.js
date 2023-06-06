@@ -1,6 +1,6 @@
 let contacts=[
     {id:1,phone:1111111111,name:"Ramesh",img:"https://w0.peakpx.com/wallpaper/208/752/HD-wallpaper-whatsapp-dp-cartoon.jpg",lastMsg:"Hi ... how are you ??",time:"7:30 AM"},
-    {id:2,phone:2222222222,name:"Rahul",img:"https://cdn4.sharechat.com/img_253816_1b149d12_1672674842650_sc.jpg",lastMsg:"Hi  ...kl tm party m aa rhe ho kya?",time:"7:30 AM"},
+    {id:2,phone:2222222222,name:"Rahul",img:"https://cdn4.sharechat.com/img_253816_1b149d12_1672674842650_sc.jpg",lastMsg:"I am good",time:"7:30 AM"},
     {id:3,phone:3333333333,name:"Zain",img:"https://cn.i.cdn.ti-platform.com/cnapac/content/2017/showpage/ben-10/sa/showicon.png",lastMsg:"Hi... how are you ??",time:"7:30 AM"},
     {id:4,phone:4444444444,name:"Raju",img:"https://play-lh.googleusercontent.com/nxIFMW1QR5YLap0S7FEnhQjPFLBDo7k662OrzS7nwMGLOzXXdz4EBC41FIQjjnAu2sds",lastMsg:"what are you doing?  can u help me plss?",time:"7:30 AM"},
     {id:5,phone:5555555555,name:"Thomas",img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/JJ_Thomson.jpg",lastMsg:"Hii.. please mera homework m help krdo",time:"7:30 AM"},
@@ -9,15 +9,33 @@ let contacts=[
     
 ]
 let msg=[
-    {text:'Hi ... how are you ??',senderPhone:1111111111,receiverPhone:1111111111,time:'7:30 AM'},
-    {text:'Hi  ...kl tm party m aa rhe ho kya?',senderPhone:2222222222,receiverPhone:1111111111,time:'7:30 AM'},
-    {text:'Hi... how are you ??',senderPhone:3333333333,receiverPhone:1111111111,time:'7:40 AM'},
-    {text:'what are you doing?  can u help me plss?',senderPhone:4444444444,receiverPhone:1111111111,time:'7:40 AM'},
-    {text:'Hii.. please mera homework m help krdo',senderPhone:5555555555,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'Hi🙋🏻‍♂️...how are you ??',senderPhone:1111111111,receiverPhone:1111111111,time:'7:30 AM'},
+
+    {text:'Hi🙋🏻‍♂️...how are you?',senderPhone:2222222222,receiverPhone:1111111111,time:'7:30 AM'},
+    {text:'Hello🙋🏻‍♂️....i am fine',senderPhone:1111111111,receiverPhone:2222222222,time:'7:30 AM'},
+    {text:'What about you..?',senderPhone:1111111111,receiverPhone:2222222222,time:'7:30 AM'},
+    {text:'I am good😁',senderPhone:2222222222,receiverPhone:1111111111,time:'7:30 AM'},
+
+    {text:'Hi🙋🏻‍♂️... we are going to summer trip🛫🏕️🏄🏻‍♂️',senderPhone:3333333333,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'tm bhi chaloge hmare sath?',senderPhone:3333333333,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'ha😍...',senderPhone:1111111111,receiverPhone:3333333333,time:'7:40 AM'},
+
+    {text:'what are you doing?  can u help me plss😁?',senderPhone:4444444444,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'yes...what happen🙄?',senderPhone:1111111111,receiverPhone:4444444444,time:'7:40 AM'},
+    {text:'actually mujhe kl assignment submit krna h',senderPhone:4444444444,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'Usme hi tmhari help chahiye thi',senderPhone:4444444444,receiverPhone:1111111111,time:'7:40 AM'},
+
+    {text:'Hii🙋🏻‍♂️.. please mera homework m help krdo😁',senderPhone:5555555555,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:'Nhi🤨...',senderPhone:1111111111,receiverPhone:5555555555,time:'7:40 AM'},
+    {text:'Tmhe khud apna homework krna chahiye ab🤨',senderPhone:1111111111,receiverPhone:5555555555,time:'7:40 AM'},
+
     {text:' kl test h tayyar krke aana chapter 2',senderPhone:6666666666,receiverPhone:1111111111,time:'7:40 AM'},
+    {text:' Ok ',senderPhone:1111111111,receiverPhone:6666666666,time:'7:40 AM'},
+
     {text:'Aaj tm clg q ni aye ',senderPhone:7777777777,receiverPhone:1111111111,time:'7:40 AM'},
-    
-    
+    {text:'bcz i m suffering from fever🤒😷',senderPhone:1111111111,receiverPhone:7777777777,time:'7:40 AM'},
+    {text:'Aur mujhe blood test krana tha',senderPhone:1111111111,receiverPhone:7777777777,time:'7:40 AM'},
+    {text:'Ok..get well soon💐',senderPhone:7777777777,receiverPhone:1111111111,time:'7:40 AM'}
 ]
 /*
 let msg=[

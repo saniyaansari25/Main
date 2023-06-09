@@ -25,8 +25,8 @@ app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 
 let {contacts,msg}=require("./watsappData.js");
 let fs=require("fs");
-let fname1="contacts.json";
-let fname2="msg2.json";
+let fname1="contacts01.json";
+let fname2="msg00.json";
 
 let arr=[]
 function showUrlMethod(req,res,next){

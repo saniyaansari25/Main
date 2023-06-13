@@ -1,11 +1,11 @@
 let contacts=[
     {id:1,phone:1111111111,name:"Ramesh",img:"https://w0.peakpx.com/wallpaper/208/752/HD-wallpaper-whatsapp-dp-cartoon.jpg",lastMsg:"Hi ... how are you ??",time:"7:30 AM"},
-    {id:2,phone:2222222222,name:"Rahul",img:"https://cdn4.sharechat.com/img_253816_1b149d12_1672674842650_sc.jpg",lastMsg:"I am good",time:"7:30 AM"},
-    {id:3,phone:3333333333,name:"Zain",img:"https://cn.i.cdn.ti-platform.com/cnapac/content/2017/showpage/ben-10/sa/showicon.png",lastMsg:"Hi... how are you ??",time:"7:30 AM"},
-    {id:4,phone:4444444444,name:"Raju",img:"https://play-lh.googleusercontent.com/nxIFMW1QR5YLap0S7FEnhQjPFLBDo7k662OrzS7nwMGLOzXXdz4EBC41FIQjjnAu2sds",lastMsg:"what are you doing?  can u help me plss?",time:"7:30 AM"},
-    {id:5,phone:5555555555,name:"Thomas",img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/JJ_Thomson.jpg",lastMsg:"Hii.. please mera homework m help krdo",time:"7:30 AM"},
-    {id:6,phone:6666666666,name:"Ron",img:"https://www.kidscollections.com.au/wp-content/uploads/2018/11/Harry-Potter-Emblem-Rug.jpg",lastMsg:" kl test h tayyar krke aana chapter 2",time:"7:30 AM"},
-    {id:7,phone:7777777777,name:"Harry",img:"https://render.fineartamerica.com/images/rendered/search/metal-print/images/artworkimages/medium/3/harry-potter-and-the-philosophers-stone-by-jk-rowling-greatest-books-ever-art-print-series-200-design-turnpike.jpg?shape=square",lastMsg:"Aaj tm clg q ni aye",time:"7:30 AM"},
+    {id:2,phone:2222222222,name:"Rahul",img:"https://cdn4.sharechat.com/img_253816_1b149d12_1672674842650_sc.jpg",lastMsg:"I am good😁",time:"7:30 AM"},
+    {id:3,phone:3333333333,name:"Zain",img:"https://cn.i.cdn.ti-platform.com/cnapac/content/2017/showpage/ben-10/sa/showicon.png",lastMsg:"ha😍...",time:"7:30 AM"},
+    {id:4,phone:4444444444,name:"Raju",img:"https://play-lh.googleusercontent.com/nxIFMW1QR5YLap0S7FEnhQjPFLBDo7k662OrzS7nwMGLOzXXdz4EBC41FIQjjnAu2sds",lastMsg:"Usme hi tmhari help chahiye thi",time:"7:30 AM"},
+    {id:5,phone:5555555555,name:"Thomas",img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/JJ_Thomson.jpg",lastMsg:"Tmhe khud apna homework krna chahiye ab🤨",time:"7:30 AM"},
+    {id:6,phone:6666666666,name:"Ron",img:"https://www.kidscollections.com.au/wp-content/uploads/2018/11/Harry-Potter-Emblem-Rug.jpg",lastMsg:" Ok ",time:"7:30 AM"},
+    {id:7,phone:7777777777,name:"Harry",img:"https://render.fineartamerica.com/images/rendered/search/metal-print/images/artworkimages/medium/3/harry-potter-and-the-philosophers-stone-by-jk-rowling-greatest-books-ever-art-print-series-200-design-turnpike.jpg?shape=square",lastMsg:"Ok..get well soon💐",time:"7:30 AM"},
     
 ]
 let msg=[

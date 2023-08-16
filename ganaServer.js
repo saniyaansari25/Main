@@ -28,7 +28,7 @@ let fname2="trendingSongs.json";
 let fname3="newSongs.json";
 let fname4="oldSongs.json";
 
-app.get("/ganna",function(req,res){
+/*app.get("/ganna",function(req,res){
     let data1=JSON.stringify(data)
     fs.writeFile(fname1,data1,function(err){
         if(err)res.status(404).send(err)
@@ -40,7 +40,7 @@ app.get("/ganna",function(req,res){
             }
         })
     })
-})
+})*/
 app.get("/oldSongs",function(req,res){
     let data1=JSON.stringify(oldSongs)
     fs.writeFile(fname4,data1,function(err){

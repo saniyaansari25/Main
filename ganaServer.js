@@ -16,7 +16,7 @@ app.use(function(req,res,next){
 var port=process.env.PORT || 2410;
 app.listen(port,()=>console.log(`Node app listening on port ${port}!`));
 
-let {data}=require("./ganaData.js");
+//let {data}=require("./ganaData.js");
 let {trendingSongs}=require("./ganaData2.js");
 let {newSongs}=require("./ganaData1.js");
 let {oldSongs}=require("./ganaData3.js");

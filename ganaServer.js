@@ -41,6 +41,46 @@ app.get("/ganna",function(req,res){
         })
     })
 })
+app.get("/oldSongs",function(req,res){
+    let data1=JSON.stringify(oldSongs)
+    fs.writeFile(fname4,data1,function(err){
+        if(err)res.status(404).send(err)
+        fs.readFile(fname4,"utf8",function(err,data){
+            if(err)res.status(404).send(err)
+            else{
+                let furArray=JSON.parse(data)
+                res.send(furArray)
+            }
+        })
+    })
+})
+app.get("/newSongs",function(req,res){
+    let data1=JSON.stringify(newSongs)
+    fs.writeFile(fname3,data1,function(err){
+        if(err)res.status(404).send(err)
+        fs.readFile(fname3,"utf8",function(err,data){
+            if(err)res.status(404).send(err)
+            else{
+                let furArray=JSON.parse(data)
+                res.send(furArray)
+            }
+        })
+    })
+})
+app.get("/trendingSongs",function(req,res){
+    let data1=JSON.stringify(trendingSongs)
+    fs.writeFile(fname2,data1,function(err){
+        if(err)res.status(404).send(err)
+        fs.readFile(fname2,"utf8",function(err,data){
+            if(err)res.status(404).send(err)
+            else{
+                let furArray=JSON.parse(data)
+                res.send(furArray)
+            }
+        })
+    })
+})
+
 app.get("/:trend",function(req,res){
     let {trend}=req.params
     if(trend=='trend'){
